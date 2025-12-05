@@ -1,20 +1,49 @@
 <script setup>
+import { ref } from 'vue';
 import Card from './Card.vue';
+import axios from 'axios';
+
+const imagens = ref([]);
+
+    async function carregarImagens(){
+        const res  = await axios.get('https://picsum.photos/v2/list?page3&limit=30');
+        
+        imagens.value = res.data;
+        console.log(res);
+    }
+
+carregarImagens();
 </script>
 <template>
     <h2>Inspire-se</h2>
     <section class="inspire">
-        <Card imagem="https://i.pinimg.com/736x/cc/0d/37/cc0d3781240d0fbfe57194dd56898c88.jpg"/>
-        <Card imagem="https://img.freepik.com/fotos-gratis/ponte-de-madeira-para-a-praia-durante-o-por-do-sol_181624-18247.jpg?semt=ais_hybrid&w=740&q=80" />
+       <Card
+        v-for="img in imagens"
+        :imagem="img.download_url"
+       />
     </section>
     
 </template>
 <style scoped lang="scss">
 .inspire, h2{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 10px;
     margin: 2rem;
+    // width: 100%;
+    // height: 100%;
 }
+// .inspire {
+
+//   display: grid;
+
+//   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+//   gap: 1.5rem;
+
+//   margin: 0 2rem 2rem 2rem;
+
+// }
 
 </style>
