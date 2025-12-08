@@ -1,13 +1,17 @@
 <script setup>
   import Banner from "./components/Banner.vue";
   import Header from "./components/Header.vue";
-  import inspire from "./components/inspire.vue";
+  import Inspire from "./components/inspire.vue";
+  import Footer from "./components/Footer.vue";
+
+
 </script>
 
 <template>
 <Header/>
 <Banner/>
-<inspire/>
+<Inspire/>
+<Footer />
 </template>
 
 <style setup>
